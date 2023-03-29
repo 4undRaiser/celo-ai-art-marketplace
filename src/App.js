@@ -77,7 +77,7 @@ function App() {
         loadingText = "Creating and Minting Art......" 
     // Call AI API to generate a image based on description
     const imageData = await createImage(_name, _description);
-    // Upload image to IPFS (web3.Storage)
+ 
     if(imageData){
     const url = await uploadToIpfs(imageData, _name, _description)
     console.log(url);
@@ -123,7 +123,7 @@ const createImage = async (_name, _description) => {
   }
 
   const mintImage = async (tokenURI) => {
-    //setMessage("Waiting for Mint...")
+
      await contract.methods.mintArt(tokenURI)
     .send({ from: address });
   }
@@ -270,9 +270,6 @@ const buyArt = async (tokenId) => {
         <p className='spinner-text'>{loadingText}</p>
       </div>
     )}
-
-    
-      
       <Home cUSDBalance={cUSDBalance} createAndMint={createAndMint} />
       <Marketplace
         arts={arts}
